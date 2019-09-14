@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>EncryptionType</key>
+			<string>WPA</string>
+			<key>Password</key>
+			<string>password123</string>
+			<key>PayloadDescription</key>
+			<string>Configures Wi-Fi settings</string>
+			<key>PayloadDisplayName</key>
+			<string>Wi-Fi</string>
+			<key>PayloadIdentifier</key>
+			<string>com.company.C9B2F74E-C5C7-45D9-A750-D68A97362932.com.apple.wifi.managed.6DDBBC7C-0382-4378-9552-ABA2EF797804</string>
+			<key>PayloadOrganization</key>
+			<string></string>
+			<key>PayloadType</key>
+			<string>com.apple.wifi.managed</string>
+			<key>PayloadUUID</key>
+			<string>6DDBBC7C-0382-4378-9552-ABA2EF797804</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>SSID_STR</key>
+			<string>Secure</string>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Connect to the company WiFi network</string>
+	<key>PayloadDisplayName</key>
+	<string>Company WiFi</string>
+	<key>PayloadIdentifier</key>
+	<string>com.company.C9B2F74E-C5C7-45D9-A750-D68A97362932</string>
+	<key>PayloadOrganization</key>
+	<string>Company Name</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>C9B2F74E-C5C7-45D9-A750-D68A97362932</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>

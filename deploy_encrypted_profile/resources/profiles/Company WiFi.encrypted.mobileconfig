@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EncryptedPayloadContent</key>
+	<data>
+	MIAGCSqGSIb3DQEHA6CAMIACAQAxggGXMIIBkwIBADB7MG4xCzAJBgNVBAYTAlVTMQsw
+	CQYDVQQIDAJNRDETMBEGA1UEBwwKTWlkZGxldG93bjEVMBMGA1UECgwMQ29tcGFueSBO
+	YW1lMQswCQYDVQQLDAJJVDEZMBcGA1UEAwwQd2lmaS5jb21wYW55LmNvbQIJAMQPmH6S
+	tx0cMA0GCSqGSIb3DQEBAQUABIIBAH8iTras7wFQE4BKE8wxKFPhUaBJXLtWqtKwGeO4
+	/jl6QmIssBq0tVv+t5heZrWK+mYono0HVKZXQS7eS5mj8qYOtMQ65fGGVfqOrNdJKn1L
+	NVclt6gzkdFQdWwrr8PZ2udqjkLIpmipyERyhi2rNF/U2hNe+diTrXuz8nXlA0SA7wyO
+	TleKOX4YcKUxh2p6jC5yeGvuxXIl0my1Yucb7ZTC9nsmOnlovONEF5m7DLejF8r+UsWA
+	KrqErPkcMDmM2vArQT+SOrgJOWNZJk/vcZ+2RdGcMao7Vyo2LN/839om7pt9JpgSc+1R
+	6kKw6N6o8IEGMKEIiWZakKKZw2f3B2QwgAYJKoZIhvcNAQcBMBQGCCqGSIb3DQMHBAj5
+	aEdQUJQGuKCABIIDiFxjzBKQOlPP3JVfYzhGdQDN/V+sKkikU7DyITAeYNqI6y4RxG4K
+	sZHj4QcYVJ2okFYJi9E8WoabG/WVtXNXrpE/SCBi7pPuIZidIKfWk3QMq0h2Ev3+N3gq
+	WhG0QcexYXPdAFVvDx1z1JdNa96FnQPSDefKfCq4Yq4CnE96XSBjQiAbYBnvjNpLCVTX
+	1/jbBQ/W98mGJCjHn80I5Qe0jL3VibnT3NaSn6ixCWcuEBEIEU4sY11sddpfnS2eWkqD
+	hdT+7LjAqeG1A+jSWv4yYoHPwyDUnnZ8AaUbCa1W3kzGNemV4PM65Sn7DFwJaSOdlcCK
+	FnlDS1GoBfebnXBOKU2/KWOKTGykJmvmC8IDYNINVXQdkUGNYl23dMAv84lxESdPPbjC
+	kRtBBlW5omoIbtut0uvWEZF1Sjc0uucVLBn+St8RgATpVVBSPzWAQjebYCDJ1doLttja
+	4L1NFgADxTxqmwvBJJO80xC2Sm0T/0p4E1xAX0qm1sVE18NR4aD/JkQ3fiYMTrDTRR11
+	jL7PvlWC+feSPqeS63vCskA3nTUZMfaqnlM/MRR6euSfMeimHKykF8M5M0zJjLkSGz+w
+	9b1ZRSa1VTXCKTKItq9yFvyQayW0tuvN8wUpJYQHb+SATm2s3e4aiA0kHT4fgPH+23+l
+	HBijfOSMAnZm5tAdX1rMAdp4a4kP3R2ibIwGQjED4U0epPEYP+oZvbzfeZmQ+F/expR9
+	8RWPYIY4Y8XhIndalwN3YbXZ6P4Pqg66AgW4HXkBQb1RD1D1Db+bPUW4M2wvWH7PTWVT
+	/AEmPyzhm3XgzUD2Y/ipZTBfqEzD1JDZfuhMsu8V+EZrtSEDl+vSrWvl6LQgkHfeR7hS
+	TItLF77xIknnTfn83A8s056ZBmzBkddQYNdlFevuGLMDl+akUVIJHIeuBMbiVFkRrhnB
+	5Qzxfwaqr3vc8ePfrwLfFQu/8LO7QkY2HhhJ41Rk8ScUpcoEHGu0QRULO0oUn1Enk061
+	3MOtlnNaTUlksdkvZ2R0sJir4E/DPJIXEz67EHZ+5PapTtaMQSFxS44VKOiqTEoN1Aoe
+	+fU7WDGr7zObNSU3CIQUvc0XgkmiJOo5vvysE8Bzs5JB7ewFBNMUcUP71ZYJvlSu4e6/
+	LlAI/5CpVAPN25C14ToLWjFcA7mgCnm/4CtG5xk9GY8s7uTNTfXCDUwKlVr6Ot3M8WgE
+	CNX1bPguiaY3AAAAAAAAAAAAAA==
+	</data>
+	<key>PayloadDescription</key>
+	<string>Connect to the company WiFi network</string>
+	<key>PayloadDisplayName</key>
+	<string>Company WiFi</string>
+	<key>PayloadIdentifier</key>
+	<string>com.company.C9B2F74E-C5C7-45D9-A750-D68A97362932</string>
+	<key>PayloadOrganization</key>
+	<string>Company Name</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>C9B2F74E-C5C7-45D9-A750-D68A97362932</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>

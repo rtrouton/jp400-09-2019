@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SpruceReport>
+    <ReportDate>20190911-144338</ReportDate>
+    <Server>https://jamf.pro.server.name:8443</Server>
+    <APIUser>jamfproadmin</APIUser>
+    <LocalUser>username</LocalUser>
+    <SpruceVersion>2.0.1</SpruceVersion>
+    <python-jssVersion>2.0.0</python-jssVersion>
+    <Removals />
+    <ComputerGroupUsageReport>
+        <Unused length="3">
+            <Description>All groups which do not participate in scoping. Computer groups are considered to be in-use if they are designated in the scope or the exclusions of a policy or a configuration profile. This report includes all groups which are nested inside of smart groups using the 'member_of' criterion.</Description>
+            <ComputerGroup id="1">All Managed Clients</ComputerGroup>
+            <ComputerGroup id="2">All Managed Servers</ComputerGroup>
+            <ComputerGroup id="3">All Macs running 10.13.2 or later</ComputerGroup>
+        </Unused>
+        <EmptyComputerGroups length="1">
+            <Description>Computer groups which have no members.</Description>
+            <ComputerGroup id="3">All Macs running 10.13.2 or later</ComputerGroup>
+        </EmptyComputerGroups>
+        <Cruftiness>
+            <UnscopedComputergroupCruftiness>
+                <Value>100.00%</Value>
+                <Value>Rank: 💩 💩 💩</Value>
+            </UnscopedComputergroupCruftiness>
+            <UnscopedComputerGroupCruftiness>
+                <Value>100.00%</Value>
+                <Value>Rank: 💩 💩 💩</Value>
+            </UnscopedComputerGroupCruftiness>
+            <EmptyGroupCruftiness>
+                <Value>33.33%</Value>
+                <Value>Rank: 👻</Value>
+            </EmptyGroupCruftiness>
+        </Cruftiness>
+    </ComputerGroupUsageReport>
+</SpruceReport>

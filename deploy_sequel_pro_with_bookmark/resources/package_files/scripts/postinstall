@@ -1,0 +1,235 @@
+#!/bin/bash
+
+install_dir=$(dirname $0)
+random=$(od -t uI -N 4 /dev/urandom | awk '{print $2}')
+plistbuddy="/usr/libexec/PlistBuddy"
+server="server.name.here"
+bookmark_name="$server"
+username="user_goes_here"
+database="database_goes_here"
+port="3306"
+socket=""
+ssh_hostname=""
+ssh_key_location=""
+ssh_key_location_enabled="0"
+ssh_port_number=""
+ssh_username=""
+ssl_certificate_authority_certificate_location=""
+ssl_certificate_authority_certificate_location_enabled="0"
+ssl_certificate_location=""
+ssl_certificate_location_enabled="0"
+ssl_certificate_key_file_location=""
+ssl_certificate_key_file_location_enabled="0"
+type="0"
+use_ssl_connection="0"
+
+
+
+ # The script applies Sequel Pro bookmark settings to each user and user template folder
+ # For more information on importing Sequel Pro bookmarks, please see the link below:
+ # https://blog.eexit.net/osx-dealing-with-property-list-files/
+
+ for USER_TEMPLATE in "$3/System/Library/User Template"/*
+  do
+  
+    if [[ ! -f "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist" ]]; then
+       /bin/mkdir -p "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data"
+       /bin/cat > "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist" << SEQUELPROBOOKMARKS
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Favorites Root</key>
+	<dict>
+		<key>Children</key>
+		<array>
+			<dict>
+				<key>colorIndex</key>
+				<integer>-1</integer>
+				<key>database</key>
+				<string>$database</string>
+				<key>host</key>
+				<string>$server</string>
+				<key>id</key>
+				<integer>$random</integer>
+				<key>name</key>
+				<string>$bookmark_name</string>
+				<key>port</key>
+				<string>$port</string>
+				<key>socket</key>
+				<string>$socket</string>
+				<key>sshHost</key>
+				<string>$ssh_hostname</string>
+				<key>sshKeyLocation</key>
+				<string>$ssh_key_location</string>
+				<key>sshKeyLocationEnabled</key>
+				<integer>$ssh_key_location_enabled</integer>
+				<key>sshPort</key>
+				<string>$ssh_port_number</string>
+				<key>sshUser</key>
+				<string>$ssh_username</string>
+				<key>sslCACertFileLocation</key>
+				<string>$ssl_certificate_authority_certificate_location</string>
+				<key>sslCACertFileLocationEnabled</key>
+				<integer>$ssl_certificate_authority_certificate_location_enabled</integer>
+				<key>sslCertificateFileLocation</key>
+				<string>$ssl_certificate_location</string>
+				<key>sslCertificateFileLocationEnabled</key>
+				<integer>$ssl_certificate_location_enabled</integer>
+				<key>sslKeyFileLocation</key>
+				<string>$ssl_certificate_key_file_location</string>
+				<key>sslKeyFileLocationEnabled</key>
+				<integer>$ssl_certificate_key_file_location_enabled</integer>
+				<key>type</key>
+				<integer>$type</integer>
+				<key>useSSL</key>
+				<integer>$use_ssl_connection</integer>
+				<key>user</key>
+				<string>$username</string>
+			</dict>
+		</array>
+		<key>IsExpanded</key>
+		<true/>
+		<key>Name</key>
+		<string>FAVORITES</string>
+	</dict>
+</dict>
+</plist>
+SEQUELPROBOOKMARKS
+    else
+      "$plistbuddy" -c "add :tmp:Name string ImportedBookmarks-$random" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :tmp:IsExpanded string YES" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :tmp:Children array" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :tmp dict" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:database string $database" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:host string $server" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:name string $bookmark_name" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:user string $username" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:id integer $random" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:port string $port" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:socket string $socket" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:sshHost string $ssh_hostname" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:sshKeyLocation string $ssh_key_location" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:sshKeyLocationEnabled integer $ssh_key_location_enabled" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:sshPort string $ssh_port_number" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:sshUser string $ssh_username" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:sslCACertFileLocation string $ssl_certificate_authority_certificate_location" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:sslCACertFileLocationEnabled integer $ssl_certificate_authority_certificate_location_enabled" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:sslCertificateFileLocation string $ssl_certificate_location" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:sslCertificateFileLocationEnabled integer $ssl_certificate_location_enabled" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:sslKeyFileLocation string $ssl_certificate_key_file_location" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:sslKeyFileLocationEnabled integer $ssl_certificate_key_file_location_enabled" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:type integer $type" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "add :server:useSSL integer $use_ssl_connection" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "copy :server :tmp:Children:" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "delete :server" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "copy :tmp :Favorites\ Root:Children:" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      "$plistbuddy" -c "delete :tmp" "${USER_TEMPLATE}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+    fi
+  done
+
+ for USER_HOME in "$3/Users"/*
+  do
+    USER_UID=`basename "${USER_HOME}"`
+    if [ ! "${USER_UID}" = "Shared" ]; then
+        if [[ ! -f "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist" ]]; then
+           /bin/mkdir -p "${USER_HOME}/Library/Application Support/Sequel Pro/Data"
+           /bin/cp "$install_dir/Favorites.plist" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+           /usr/sbin/chown -R "${USER_UID}" "${USER_HOME}/Library/Application Support/Sequel Pro"
+           /bin/cat > "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist" << SEQUELPROBOOKMARKS
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Favorites Root</key>
+	<dict>
+		<key>Children</key>
+		<array>
+			<dict>
+				<key>colorIndex</key>
+				<integer>-1</integer>
+				<key>database</key>
+				<string>$database</string>
+				<key>host</key>
+				<string>$server</string>
+				<key>id</key>
+				<integer>$random</integer>
+				<key>name</key>
+				<string>$bookmark_name</string>
+				<key>port</key>
+				<string>$port</string>
+				<key>socket</key>
+				<string>$socket</string>
+				<key>sshHost</key>
+				<string>$ssh_hostname</string>
+				<key>sshKeyLocation</key>
+				<string>$ssh_key_location</string>
+				<key>sshKeyLocationEnabled</key>
+				<integer>$ssh_key_location_enabled</integer>
+				<key>sshPort</key>
+				<string>$ssh_port_number</string>
+				<key>sshUser</key>
+				<string>$ssh_username</string>
+				<key>sslCACertFileLocation</key>
+				<string>$ssl_certificate_authority_certificate_location</string>
+				<key>sslCACertFileLocationEnabled</key>
+				<integer>$ssl_certificate_authority_certificate_location_enabled</integer>
+				<key>sslCertificateFileLocation</key>
+				<string>$ssl_certificate_location</string>
+				<key>sslCertificateFileLocationEnabled</key>
+				<integer>$ssl_certificate_location_enabled</integer>
+				<key>sslKeyFileLocation</key>
+				<string>$ssl_certificate_key_file_location</string>
+				<key>sslKeyFileLocationEnabled</key>
+				<integer>$ssl_certificate_key_file_location_enabled</integer>
+				<key>type</key>
+				<integer>$type</integer>
+				<key>useSSL</key>
+				<integer>$use_ssl_connection</integer>
+				<key>user</key>
+				<string>$username</string>
+			</dict>
+		</array>
+		<key>IsExpanded</key>
+		<true/>
+		<key>Name</key>
+		<string>FAVORITES</string>
+	</dict>
+</dict>
+</plist>
+SEQUELPROBOOKMARKS
+        else
+        "$plistbuddy" -c "add :tmp:Name string ImportedBookmarks-$random" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :tmp:IsExpanded string YES" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :tmp:Children array" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :tmp dict" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:database string $database" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:host string $server" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:name string $bookmark_name" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:user string $username" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:id integer $random" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:port string $port" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:socket string $socket" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:sshHost string $ssh_hostname" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:sshKeyLocation string $ssh_key_location" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:sshKeyLocationEnabled integer $ssh_key_location_enabled" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:sshPort string $ssh_port_number" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:sshUser string $ssh_username" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:sslCACertFileLocation string $ssl_certificate_authority_certificate_location" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:sslCACertFileLocationEnabled integer $ssl_certificate_authority_certificate_location_enabled" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:sslCertificateFileLocation string $ssl_certificate_location" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:sslCertificateFileLocationEnabled integer $ssl_certificate_location_enabled" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:sslKeyFileLocation string $ssl_certificate_key_file_location" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:sslKeyFileLocationEnabled integer $ssl_certificate_key_file_location_enabled" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:type integer $type" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "add :server:useSSL integer $use_ssl_connection" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "copy :server :tmp:Children:" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "delete :server" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "copy :tmp :Favorites\ Root:Children:" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        "$plistbuddy" -c "delete :tmp" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+        /usr/sbin/chown -R "${USER_UID}" "${USER_HOME}/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+      fi
+    fi
+  done
+
+exit 0
