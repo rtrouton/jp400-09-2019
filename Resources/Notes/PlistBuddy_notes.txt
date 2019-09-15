@@ -1,0 +1,81 @@
+Get information from nested arrays using PlistBuddy:
+
+Reading Example - Get the "Thunderbolt 1" entry from /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist
+
+jamfC02SW17FGVC8:~ username$ /usr/libexec/PlistBuddy -c "print" /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist
+Dict {
+    Model = MacBookPro13,1
+    Interfaces = Array {
+        Dict {
+            Active = true
+            IOInterfaceNamePrefix = en
+            IOMACAddress = xOCX_d
+            IOPathMatch = IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/RP09@1D/IOPP/ARPT@0/AirPort_BrcmNIC/en0
+            IOInterfaceUnit = 0
+            IOBuiltin = true
+            SCNetworkInterfaceType = IEEE80211
+            IOInterfaceType = 6
+            BSD Name = en0
+            SCNetworkInterfaceInfo = Dict {
+                UserDefinedName = Wi-Fi
+            }
+        }
+        Dict {
+            Active = true
+            IOInterfaceNamePrefix = en
+            IOMACAddress = 8`T
+            IOPathMatch = IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/RP05@1C,4/IOPP/UPSB@0/IOPP/DSB0@0/IOPP/NHI0@0/AppleThunderboltHAL/AppleThunderboltNHIType3/IOThunderboltController/IOThunderboltLocalNode/AppleThunderboltIPService/AppleThunderboltIPPort/en1
+            IOInterfaceUnit = 1
+            IOBuiltin = true
+            SCNetworkInterfaceType = Ethernet
+            IOInterfaceType = 6
+            BSD Name = en1
+            SCNetworkInterfaceInfo = Dict {
+                UserDefinedName = Thunderbolt 1
+            }
+        }
+        Dict {
+            Active = true
+            IOInterfaceNamePrefix = en
+            IOMACAddress = 8`T
+            IOPathMatch = IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/RP05@1C,4/IOPP/UPSB@0/IOPP/DSB0@0/IOPP/NHI0@0/AppleThunderboltHAL/AppleThunderboltNHIType3/IOThunderboltController/IOThunderboltLocalNode/AppleThunderboltIPService/AppleThunderboltIPPort/en2
+            IOInterfaceUnit = 2
+            IOBuiltin = true
+            SCNetworkInterfaceType = Ethernet
+            IOInterfaceType = 6
+            BSD Name = en2
+            SCNetworkInterfaceInfo = Dict {
+                UserDefinedName = Thunderbolt 2
+            }
+        }
+        Dict {
+            IOInterfaceNamePrefix = en
+            IOPathMatch = IOService:/IOResources/IOUserEthernetResource/IOUserEthernetResourceUserClient/IOUserEthernetController/en3
+            IOMACAddress = xOCO?
+            IOInterfaceUnit = 3
+            IOBuiltin = false
+            SCNetworkInterfaceType = Ethernet
+            IOInterfaceType = 6
+            BSD Name = en3
+            SCNetworkInterfaceInfo = Dict {
+                UserDefinedName = Bluetooth PAN
+            }
+        }
+    }
+}
+
+Array numbering starts at 0, so the second array (with the needed info) is actually array 1.
+
+jamfC02SW17FGVC8:~ username$ /usr/libexec/PlistBuddy -c "print Interfaces:1:SCNetworkInterfaceInfo:UserDefinedName" /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist
+Thunderbolt 1
+jamfC02SW17FGVC8:~
+
+
+Writing example: Change the sort order on the desktop
+
+1. Explicitly set a sort order (the needed keys won't exist by default.)
+
+2. Change it to sort by name:
+
+jamfC02SW17FGVC8:~ username$ /usr/libexec/PlistBuddy -c "set DesktopViewSettings:IconViewSettings:arrangeBy name" ~/Library/Preferences/com.apple.finder.plist
+jamfC02SW17FGVC8:~ username$ 

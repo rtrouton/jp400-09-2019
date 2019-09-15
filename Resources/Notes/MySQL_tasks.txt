@@ -1,0 +1,26 @@
+1. View the table structure of Jamf Pro:
+
+MySQL query: SHOW TABLES;
+
+Command line: mysql -uusername_goes_here -ppassword_goes_here -hjamf.pro.server.here database_name_here -BsN -e " SHOW TABLES; "
+
+
+2. Describe the table which stores enrollment invitations (\G makes it more readable):
+
+MySQL query: DESCRIBE enrollment_invitations\G;
+
+Command line: mysql -uusername_goes_here -ppassword_goes_here -hjamf.pro.server.here database_name_here -BsN -e " DESCRIBE enrollment_invitations\G; "
+
+
+3. Print the categories in Jamf Pro:
+
+MySQL query: SELECT * FROM categories\G;
+
+Command line: mysql -uusername_goes_here -ppassword_goes_here -hjamf.pro.server.here database_name_here -BsN -e " SELECT * FROM categories\G; "
+
+
+4. Print the names for computers with IDs above 50 and below 90:
+
+MySQL query: SELECT computer_name FROM computers_denormalized WHERE computer_id > 50 AND computer_id < 90
+
+Command line: mysql -uusername_goes_here -ppassword_goes_here -hjamf.pro.server.here database_name_here -BsN -e " SELECT computer_name FROM computers_denormalized WHERE computer_id > 50 AND computer_id < 90; "

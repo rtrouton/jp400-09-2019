@@ -1,0 +1,38 @@
+1. Create a QuickAdd package with Recon
+
+2. Download the Jamf binary and installing it in /usr/local/jamf/bin/jamf
+
+curl -su jamfadmin:jamf1234 https://jamf.pro.server.here:8443/bin/jamf -o /tmp/jamf
+sudo mkdir -p /usr/local/jamf/bin/jamf /usr/local/bin
+sudo cp /tmp/jamf /usr/local/jamf/bin/.
+sudo chmod 755 /usr/local/jamf/bin/jamf
+
+3. Create a symbolic link to the jamf binary in /usr/local/bin
+
+ln -s /usr/local/jamf/bin/jamf /usr/local/bin/jamf
+
+4. Create the configuration file, allow invalid certificates with SSL verification set to
+always_except_during_enrollment
+
+sudo jamf createConf -k  -url https://jamf.pro.server.here:8443
+
+5. Obtain the enrollment invitation from MySQL or the postinstall script inside the QuickAdd directory
+
+SELECT * FROM enrollment_invitations\G;
+
+Enrollment invitation: 144908707164604719502384530940997501426
+
+6. Enroll a computer using the enrollment invitation.
+
+Install binary
+Symbolically link jamf binary to /usr/local/bin
+Create configuration file using "jamf createConf"
+Run the following command:
+
+sudo jamf enroll -invitation 144908707164604719502384530940997501426
+
+7. Expire the enrollment invitation.
+
+MySQL query: UPDATE enrollment_invitations SET expiration_date_epoch = 0 WHERE invitation_string = 144908707164604719502384530940997501426;
+
+Command line: mysql -uusername_goes_here -ppassword_goes_here -hjamf.pro.server.here database_name_here -BsN -e " UPDATE enrollment_invitations SET expiration_date_epoch = 0 WHERE invitation_string = 144908707164604719502384530940997501426; "

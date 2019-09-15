@@ -1,0 +1,7 @@
+Convert Google Bookmarks (which are JSON) to XML:
+
+plutil -convert xml1 "/Users/username_goes_here/Library/Application Support/Google/Chrome/Default/Bookmarks"
+
+Convert back to JSON:
+
+plutil -convert json "/Users/username_goes_here/Library/Application Support/Google/Chrome/Default/Bookmarks"

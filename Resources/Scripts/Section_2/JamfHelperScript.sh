@@ -1,0 +1,2 @@
+#!/bin/bash
+"/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper" -windowType utility -title Hello World! -description Hello World! -button1 OK -button2 Cancel -defaultButton 0

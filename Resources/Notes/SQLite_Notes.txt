@@ -1,0 +1,121 @@
+~/Library/Dictionaries/CoreDataUbiquitySupport/username~9B09280B-E2F7-5F70-A9FD-48D2C40D757B/UserDictionary/local/store/UserDictionary.db
+
+sqlite3 ~/Library/Dictionaries/CoreDataUbiquitySupport/username~9B09280B-E2F7-5F70-A9FD-48D2C40D757B/UserDictionary/local/store/UserDictionary.db
+
+jamfC02SW17FGVC8:~ username$ sqlite3 ~/Library/Dictionaries/CoreDataUbiquitySupport/username~9B09280B-E2F7-5F70-A9FD-48D2C40D757B/UserDictionary/local/store/UserDictionary.db
+SQLite version 3.24.0 2018-06-04 14:10:15
+Enter ".help" for usage hints.
+sqlite> .tables
+Y_UBKVS               ZUSERDICTIONARYENTRY  Z_PRIMARYKEY        
+Y_UBMETA              Z_METADATA          
+Y_UBRANGE             Z_MODELCACHE        
+sqlite> 
+
+
+SELECT command:
+
+sqlite> SELECT * FROM ZUSERDICTIONARYENTRY;
+1|1|1|0|0|0|0|589729109||||||On my way!|omw|
+sqlite> 
+
+Display in line format:
+
+sqlite> .headers on
+sqlite> .mode line
+sqlite> SELECT * FROM ZUSERDICTIONARYENTRY
+   ...> ;
+            Z_PK = 1
+           Z_ENT = 1
+           Z_OPT = 1
+   ZAUXINTVALUE1 = 0
+   ZAUXINTVALUE2 = 0
+   ZAUXINTVALUE3 = 0
+   ZAUXINTVALUE4 = 0
+      ZTIMESTAMP = 589729109
+ZAUXSTRINGVALUE1 = 
+ZAUXSTRINGVALUE2 = 
+ZAUXSTRINGVALUE3 = 
+ZAUXSTRINGVALUE4 = 
+   ZPARTOFSPEECH = 
+         ZPHRASE = On my way!
+       ZSHORTCUT = omw
+   ZAUXDATAVALUE = 
+sqlite>
+
+INSERT data into database:
+
+sqlite> INSERT INTO ZUSERDICTIONARYENTRY (ZPHRASE,ZSHORTCUT) VALUES ('emailaddress@email.com','emailaddress');
+sqlite> SELECT * FROM ZUSERDICTIONARYENTRY;
+            Z_PK = 1
+           Z_ENT = 1
+           Z_OPT = 1
+   ZAUXINTVALUE1 = 0
+   ZAUXINTVALUE2 = 0
+   ZAUXINTVALUE3 = 0
+   ZAUXINTVALUE4 = 0
+      ZTIMESTAMP = 589729109
+ZAUXSTRINGVALUE1 = 
+ZAUXSTRINGVALUE2 = 
+ZAUXSTRINGVALUE3 = 
+ZAUXSTRINGVALUE4 = 
+   ZPARTOFSPEECH = 
+         ZPHRASE = On my way!
+       ZSHORTCUT = omw
+   ZAUXDATAVALUE = 
+
+            Z_PK = 2
+           Z_ENT = 
+           Z_OPT = 
+   ZAUXINTVALUE1 = 
+   ZAUXINTVALUE2 = 
+   ZAUXINTVALUE3 = 
+   ZAUXINTVALUE4 = 
+      ZTIMESTAMP = 
+ZAUXSTRINGVALUE1 = 
+ZAUXSTRINGVALUE2 = 
+ZAUXSTRINGVALUE3 = 
+ZAUXSTRINGVALUE4 = 
+   ZPARTOFSPEECH = 
+         ZPHRASE = emailaddress@email.com
+       ZSHORTCUT = emailaddress
+   ZAUXDATAVALUE = 
+sqlite>
+
+DELETE entries from database:
+
+sqlite> DELETE FROM ZUSERDICTIONARYENTRY WHERE ZSHORTCUT = 'emailaddress';
+sqlite> SELECT * FROM ZUSERDICTIONARYENTRY;
+            Z_PK = 1
+           Z_ENT = 1
+           Z_OPT = 1
+   ZAUXINTVALUE1 = 0
+   ZAUXINTVALUE2 = 0
+   ZAUXINTVALUE3 = 0
+   ZAUXINTVALUE4 = 0
+      ZTIMESTAMP = 589729109
+ZAUXSTRINGVALUE1 = 
+ZAUXSTRINGVALUE2 = 
+ZAUXSTRINGVALUE3 = 
+ZAUXSTRINGVALUE4 = 
+   ZPARTOFSPEECH = 
+         ZPHRASE = On my way!
+       ZSHORTCUT = omw
+   ZAUXDATAVALUE = 
+sqlite> 
+
+
+Adding my own entries:
+
+jamfC02SW17FGVC8:~ username$ sqlite3 ~/Library/Dictionaries/CoreDataUbiquitySupport/username~9B09280B-E2F7-5F70-A9FD-48D2C40D757B/UserDictionary/local/store/UserDictionary.db
+SQLite version 3.24.0 2018-06-04 14:10:15
+Enter ".help" for usage hints.
+sqlite> .tables
+Y_UBKVS               ZUSERDICTIONARYENTRY  Z_PRIMARYKEY        
+Y_UBMETA              Z_METADATA          
+Y_UBRANGE             Z_MODELCACHE        
+sqlite> INSERT INTO ZUSERDICTIONARYENTRY (ZPHRASE,ZSHORTCUT) VALUES ('otheremailaddress@email.com','otheremailaddress');
+sqlite> SELECT * FROM ZUSERDICTIONARYENTRY;
+1|1|1|0|0|0|0|589729109||||||On my way!|omw|
+2|||||||||||||otheremailaddress@email.com|otheremailaddress|
+sqlite> 
+

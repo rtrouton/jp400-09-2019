@@ -1,0 +1,17 @@
+Certificate notes
+
+Generate a private key:
+
+openssl genrsa -out privkey.pem 2048
+
+Generate a public key from the private key:
+
+openssl rsa -pubout -in privkey.pem -out pubkey.pem
+
+Encrypt a plaintext file:
+
+openssl rsautl -encrypt -inkey pubkey.pem -pubin -in ~/Desktop/plain.txt -out ~/Desktop/secure.txt
+
+Decrypt the plaintext file:
+
+openssl rsautl -decrypt -inkey privkey.pem -in ~/Desktop/secure.txt -out ~/Desktop/secrets.txt

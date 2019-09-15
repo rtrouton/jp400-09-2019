@@ -1,0 +1,3 @@
+Add to group: dseditgroup -o edit -a username_here group_here
+Delete from group: dseditgroup -o edit -d username_here group_here
+Check user is member of group: dseditgroup -o checkmember -m username_here group_here

@@ -1,0 +1,16 @@
+1. Generate a private key.
+
+openssl genrsa -out privkey.pem 2048
+
+2. Generate a certificate signing request using the mDNS name of the server for the common name:
+
+openssl req -newkey rsa:2048 -subj "/C=US/ST=MN/L=Minneapolis/CN=pro.jamf.training" -keyout privkey.pem -out csr.csr
+
+3. Submit the CSR to Jamf Pro and download the CA certificate.
+
+Downloaded web server certificate as a .pem file named "csrReplyFromJamfPro.pem"
+Downloaded CA certificate as a .pem file named "jamfProBuiltInCA.pem"
+
+4. Combine the certificates into a .p12 file.
+
+openssl pkcs12 -export -inkey privkey.pem -in csrReplyFromJamfPro.pem -name tomcat -CAfile jamfProBuiltInCA.pem -caname root -chain -passout pass:jamf1234 -out webCertificate.p12

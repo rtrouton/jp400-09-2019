@@ -1,0 +1,1 @@
+echo "$(/usr/bin/dscl . -read /Users/$(/usr/bin/id -nu) NFSHomeDirectory | /usr/bin/awk '{print $2}')/Library/Caches"
