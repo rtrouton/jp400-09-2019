@@ -91,4 +91,4 @@ Signing a profile guarantees data integrity. To sign a profile, place the XML pr
 
 Example commands for CMS encryption of the property list are not provided in Apple's documentation, but it is possible to use `/usr/libexec/mdmclient`:
 
-[https://mosen.github.io/profiledocs/troubleshooting/mdmclient.html#encrypt](https://developer.apple.com/documentation/devicemanagement/using_configuration_profiles)
+[https://mosen.github.io/profiledocs/troubleshooting/mdmclient.html#encrypt](https://mosen.github.io/profiledocs/troubleshooting/mdmclient.html#encrypt)
