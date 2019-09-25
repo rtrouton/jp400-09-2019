@@ -15,4 +15,4 @@ jamfpro_url="https://jamf.pro.server.here:8443"
 # Delete example: curl -su "$jamfpro_username":"$jamfpro_password" "$jamfpro_url"/JSSResource/computers/id/3000 -X DELETE
 # Get example: curl -su "$jamfpro_username":"$jamfpro_password" -H "Accept: text/xml" "$jamfpro_url"/JSSResource/computers -X GET
 # Put example: curl -su "$jamfpro_username":"$jamfpro_password" -H "content-type: application/xml" "$jamfpro_url"/JSSResource/computers/id/3000 -X PUT -d "<computer><location><username>Jordan</username></location></computer>"
-# Post example: curl -su "$jamfpro_username":"$jamfpro_password" -H "content-type: application/xml" "$jamfpro_url"/JSSResource/computers/id/3000 -X PUT -d "<computer><location><username>Jordan</username></location></computer>"
+# Post example: curl -su "$jamfpro_username":"$jamfpro_password" -H "content-type: application/xml" "$jamfpro_url"/JSSResource/computers/id/3000 -X POST -d "<computer><location><username>Jordan</username></location></computer>"
